@@ -89,10 +89,12 @@ jobs:
 
             - name: Zip-it
               run: |
-                zip --symlinks -r previewbuild.zip element-web/webapp/
+                cd element-web
+                zip --symlinks -r previewbuild.zip webapp/
             - name: Upload Artifact
               uses: actions/upload-artifact@v4
               with:
-                  path: previewbuild.zip
+                  name: previewbuild
+                  path: element-web/previewbuild.zip
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
