@@ -76,6 +76,7 @@ jobs:
                   echo foobar > myfile
                   cd webapp
                   ln -s ../myfile index.html
+                  ln -s ../ folder
                   cd ..
                   echo '{ "symlinks": true }' > webapp/serve.json
                   echo $VERSION > webapp/version
@@ -87,9 +88,10 @@ jobs:
                   git rev-parse HEAD > element-web/webapp/sha
 
             - name: Upload Artifact
-              uses: actions/upload-artifact@v4
+              uses: PepeANZ/upload-artifact@symbolic-links-options
               with:
                   name: previewbuild
                   path: element-web/webapp
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
+                  followSymbolicLinks: false
