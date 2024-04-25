@@ -72,7 +72,13 @@ jobs:
                   CI_PACKAGE: true
                   VERSION: "${{ steps.layered_build.outputs.VERSION }}"
               run: |
-                  yarn build
+                  # yarn build
+                  mkdir webapp
+                  echo foobar > myfile
+                  cd webapp
+                  ln -s ../myfile index.html
+                  cd ..
+                  echo '{ "symlinks": true }' > webapp/serve.json
                   echo $VERSION > webapp/version
               working-directory: ./element-web
 
