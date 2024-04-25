@@ -73,7 +73,6 @@ jobs:
                   VERSION: "${{ steps.layered_build.outputs.VERSION }}"
               run: |
                   # yarn build
-                  mkdir webapp
                   echo foobar > myfile
                   cd webapp
                   ln -s ../myfile index.html
