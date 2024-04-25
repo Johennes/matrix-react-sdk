@@ -87,11 +87,12 @@ jobs:
               run: |
                   git rev-parse HEAD > element-web/webapp/sha
 
+            - name: Zip-it
+              run: |
+                zip --symlinks -r previewbuild.zip element-web/webapp/
             - name: Upload Artifact
-              uses: PepeANZ/upload-artifact@symbolic-links-options
+              uses: actions/upload-artifact@v4
               with:
-                  name: previewbuild
-                  path: element-web/webapp
+                  path: previewbuild.zip
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
-                  follow-symbolic-links: false
