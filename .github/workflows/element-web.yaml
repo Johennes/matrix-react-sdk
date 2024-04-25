@@ -94,4 +94,4 @@ jobs:
                   path: element-web/webapp
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
-                  followSymbolicLinks: false
+                  follow-symbolic-links: false
