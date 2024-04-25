@@ -76,7 +76,7 @@ jobs:
                   echo foobar > myfile
                   cd webapp
                   ln -s ../myfile index.html
-                  ln -s ../ folder
+                  # ln -s ../ folder
                   cd ..
                   echo '{ "symlinks": true }' > webapp/serve.json
                   echo $VERSION > webapp/version
