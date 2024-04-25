@@ -94,7 +94,7 @@ jobs:
             - name: Upload Artifact
               uses: actions/upload-artifact@v4
               with:
-                  name: previewbuild
+                  name: previewbuild.zip
                   path: element-web/previewbuild.zip
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
