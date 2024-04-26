@@ -92,9 +92,10 @@ jobs:
                 cd element-web
                 zip --symlinks -r previewbuild.zip webapp/
             - name: Upload Artifact
-              uses: actions/upload-artifact@v4
+              uses: fourieraudio/upload-artifact@no-follow
               with:
-                  name: previewbuild.zip
-                  path: element-web/previewbuild.zip
+                  name: previewbuild
+                  path: element-web/webapp
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
+                  follow-symlinks: false
