@@ -74,7 +74,7 @@ jobs:
               run: |
                   yarn build
                   echo $VERSION > webapp/version
-                  echo '{ "public": "/" }' > webapp/serve.json
+                  echo '{ "public": "/", "rewrites": [{ "source": "/config.json", "destination": "/" }] }' > webapp/serve.json
               working-directory: ./element-web
 
             # Record the react-sdk sha so our Playwright tests are from the same sha
