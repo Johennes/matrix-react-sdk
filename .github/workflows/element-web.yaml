@@ -72,14 +72,9 @@ jobs:
                   CI_PACKAGE: true
                   VERSION: "${{ steps.layered_build.outputs.VERSION }}"
               run: |
-                  # yarn build
-                  echo foobar > myfile
-                  cd webapp
-                  ln -s ../myfile index.html
-                  # ln -s ../ folder
-                  cd ..
-                  echo '{ "symlinks": true }' > webapp/serve.json
+                  yarn build
                   echo $VERSION > webapp/version
+                  echo '{ "public": "/" }'' > webapp/serve.json
               working-directory: ./element-web
 
             # Record the react-sdk sha so our Playwright tests are from the same sha
@@ -87,15 +82,10 @@ jobs:
               run: |
                   git rev-parse HEAD > element-web/webapp/sha
 
-            - name: Zip-it
-              run: |
-                cd element-web
-                zip --symlinks -r previewbuild.zip webapp/
             - name: Upload Artifact
-              uses: fourieraudio/upload-artifact@no-follow
+              uses: actions/upload-artifact@v4
               with:
                   name: previewbuild
                   path: element-web/webapp
                   # We'll only use this in a triggered job, then we're done with it
                   retention-days: 1
-                  follow-symlinks: false
